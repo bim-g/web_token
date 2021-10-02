@@ -33,6 +33,9 @@ class Token
     {
         try {
             $decrypt_data = $this->decryptData($token_value, $cypherkey);
+            if(isset($decrypt_data['exception'])){
+                return $decrypt_data;
+            }
             if (!is_array($decrypt_data)) return false;
             $decrypt_time = isset($decrypt_data["time"]) ? $decrypt_data["time"] : 0;
             $_thisTime = strtotime("now");
@@ -61,17 +64,25 @@ class Token
     }
     private function decryptData(string $token_key, string $cypherkey = null)
     {
-        $explode = explode(".", $token_key);
-        $this->decryption_key = $cypherkey ?? $explode[2];
-        $this->app_encryption_iv = hex2bin($explode[0]);
-        $token_key = $explode[1];
-        $decryption = openssl_decrypt(
-            $token_key,
-            self::CIPHERING,
-            $this->decryption_key,
-            self::OPTION,
-            $this->app_encryption_iv,
-        );
-        return json_decode($decryption, true);
+        try{
+            $explode = explode(".", $token_key);
+            $this->decryption_key = $cypherkey ?? $explode[2];            
+            $this->app_encryption_iv = hex2bin($explode[0]);
+            if(strlen($this->app_encryption_iv)!=16){
+                throw new \Exception("token invalid");
+            }
+            $token_key = $explode[1];
+            $decryption = openssl_decrypt(
+                $token_key,
+                self::CIPHERING,
+                $this->decryption_key,
+                self::OPTION,
+                $this->app_encryption_iv,
+            );
+            return json_decode($decryption, true);
+        }catch(\Exception $ex){
+            return ["execption"=>$ex->getMessage()];
+        }
+        
     }
 }
