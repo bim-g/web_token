@@ -14,7 +14,7 @@
             "Wepesi\\App\\":"class/"
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
     },
     "support": {
