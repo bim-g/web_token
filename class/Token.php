@@ -1,4 +1,6 @@
 <?php
+namespace Wepesi\App;
+
 class Token
 {
     private $decryption_key, $app_encryption_iv, $encryption_key, $iv_length;
