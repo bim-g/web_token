@@ -42,7 +42,7 @@ class Token
             $decrypt_time = isset($decrypt_data["time"]) ? $decrypt_data["time"] : 0;
             $_thisTime = strtotime("now");
             if (($_thisTime - $decrypt_time) > 0) {
-                throw new Exception("token expired");
+                throw new \Exception("token expired");
             }
             return $decrypt_data;
         } catch (\Exception $ex) {
