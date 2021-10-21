@@ -14,7 +14,17 @@
             "Wepesi\\App\\":"class/"
         }
     },
+    "minimum-stability": "dev",
     "require": {
-        "minimum-stability": "dev"
-    }
+    },
+    "support": {
+        "email": "mojtabadehdari@gmail.com"
+    },
+    "keywords": [
+        "jwt",
+        "json web token",
+        "ibmussa",
+        "php token",
+        "token"
+    ]
 }
