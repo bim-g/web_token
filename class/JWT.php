@@ -1,7 +1,7 @@
 <?php
 namespace Wepesi\App;
 
-class Token
+class JWT
 {
     private $decryption_key, $app_encryption_iv, $encryption_key, $iv_length;
     const CIPHERING = "AES-128-CTR";

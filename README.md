@@ -2,15 +2,15 @@
 simple module to help generate a simple token using php 
 
 # INTEGRATION
-create a new instance of the class `Token`, that will help you generate a new token, or validate an existing token.
+create a new instance of the class `JWT`, that will help you generate a new token, or validate an existing token.
 ```php
-$data=[
-    "data"=>"hello Github",
-    "expired"=>300
-];
-$tken= new Token;
-$_token=$tken->generate($data)
-echo $_token;
+    $data=[
+        "data"=>"hello Github",
+        "expired"=>300
+    ];
+    $tken= new JWT;
+    $_token=$tken->generate($data)
+    echo $_token;
 ```
 the class Token has 2 Method:
  * generate:
@@ -28,5 +28,11 @@ the class Token has 2 Method:
  
  - the first parameter is your token string generated with is devide in 3 parts:
 the `encryption_iv`,the `encoded_data`,the `cypherkye`.
+```php
+    $tken = new JWT();
+    $token = "4edc3e02a3ccf20c213131efa271b79b.vJjR1CIHHdfiCj4Tt+weTtnAZ7PVQw7e1eeQtdT3/qWY43pZH91r9mO92UhXrJB2NGoSv10j.c2f8ab9f30e19e14d47a6491ca77fe36";
 
+    $dec = $tken->decode($token);
+    var_dump($dec);
+```
  - the second parameter (optional) is `cypherkye` to encode your data, by default the token generate a cypherkey for the token key.
