@@ -11,7 +11,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Wepesi\\App\\":"class/"
+            "Wepesi\\App\\":"src/"
         }
     },
     "minimum-stability": "stable",
